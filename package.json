@@ -12,9 +12,9 @@
     "tsx": "^4.19.3"
   },
   "scripts": {
-    "start": "node app.js",
-    "dev": "NODE_ENV=development && node --watch app.js",
-    "test": "NODE_ENV=test && NODE_OPTIONS=--experimental-vm-modules jest"
+    "start": "npx tsx app.ts",
+    "dev": "npx tsx --watch app.ts",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "keywords": [],
   "author": "",
