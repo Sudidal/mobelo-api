@@ -1,10 +1,12 @@
+import type { Request, Response } from "express";
+
 import express from "express";
 import baseController from "../controllers/indexController.js";
 
 const router = express.Router();
 
 router.use("/base", baseController.get);
-router.use("/*", (req, res) => {
+router.use("/*", (req: Request, res: Response) => {
   res.sendStatus(404);
 });
 

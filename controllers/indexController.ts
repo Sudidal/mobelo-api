@@ -1,7 +1,9 @@
+import type { Request, Response } from "express";
+
 class BaseController {
   constructor() {}
 
-  get(req, res, next) {
+  get(req: Request, res: Response) {
     res.json({ message: "You are in the index route" });
   }
 }

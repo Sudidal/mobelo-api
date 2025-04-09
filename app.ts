@@ -1,10 +1,9 @@
 import express from "express";
-import getEnv from "./utils/getEnv.js";
 import errorHandler from "./middleware/errorHandler.js";
 import { baseRouter } from "./routers/baseRouter.js";
 
 const app = express();
-const PORT = getEnv("PORT");
+const PORT = Number(process.env.PORT ?? 3000);
 
 app.use("/", baseRouter);
 app.use(errorHandler);
