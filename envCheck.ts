@@ -6,6 +6,7 @@ config();
 class RequiredEnvs implements NodeJS.ProcessEnv {
   [index: string]: string | undefined;
   PORT: string = process.env.PORT;
+  HOST: string = process.env.HOST;
 }
 
 const requiredEnvs = new RequiredEnvs();

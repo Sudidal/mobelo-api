@@ -1,20 +1,19 @@
+import { styleText } from "node:util";
+
+import "./envCheck.ts";
 import express from "express";
 import errorHandler from "./middleware/errorHandler.js";
 import { baseRouter } from "./routers/baseRouter.js";
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3000);
+const HOST = process.env.HOST ?? "localhost";
 
 app.use("/", baseRouter);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log(
-    "Server listening on port: " +
-      PORT +
-      "\n\x1b[32m" +
-      "http://localhost:" +
-      PORT +
-      "\x1b[0m"
+    "Server running on: " + styleText(["green"], `http://${HOST}:${PORT}`)
   );
 });
