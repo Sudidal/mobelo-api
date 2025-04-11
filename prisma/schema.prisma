@@ -6,3 +6,66 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Mobile {
+  id Int @id @default(autoincrement())
+
+  name              String
+  mobileMainSpecsId Int      @unique
+  detailedSpecsId   Int      @unique
+  companyId         Int
+  launchDate        DateTime
+
+  mainSpecs           MobileMainSpecs?
+  MobileDetailedSpecs MobileDetailedSpecs?
+  company             Company              @relation(fields: [companyId], references: [id])
+}
+
+model MobileMainSpecs {
+  id       Int @id @default(autoincrement())
+  mobileId Int @unique
+
+  rom              Int
+  ram              Int
+  batterySize      Int
+  mainCamMP        Int
+  resolutionHeight Int
+  resolutionWidth  Int
+  refreshRate      Int
+  displayType      String
+  cpu              String
+
+  mobile Mobile @relation(fields: [mobileId], references: [id])
+}
+
+model MobileDetailedSpecs {
+  id       Int @id @default(autoincrement())
+  mobileId Int @unique
+
+  frontCamMP       Int
+  bodyHeight       Decimal
+  bodyWidth        Decimal
+  weight           Decimal
+  fiveG            Boolean
+  stereoSpeacker   Boolean
+  threeFiveMMJack  Boolean
+  gpu              String
+  os               String
+  resistanceRating String
+  opinion          String?
+  rearCams         String[]
+  charge           String[]
+  sensors          String[]
+  versions         String[]
+  colors           String[]
+
+  mobile Mobile @relation(fields: [mobileId], references: [id])
+}
+
+model Company {
+  id Int @id @default(autoincrement())
+
+  name String @unique
+
+  mobiles Mobile[]
+}
