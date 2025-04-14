@@ -14,8 +14,8 @@
     "tsx": "^4.19.3"
   },
   "scripts": {
-    "start": "npx tsx app.ts",
-    "dev": "npx tsx --watch app.ts",
+    "start": "npx tsx --env-file=.env app.ts",
+    "dev": "npx tsx --env-file=.env --watch app.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "keywords": [],
@@ -23,7 +23,6 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.6.0",
-    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "prisma": "^6.6.0"
