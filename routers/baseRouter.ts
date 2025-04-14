@@ -6,7 +6,7 @@ import baseController from "../controllers/indexController.js";
 const router = express.Router();
 
 router.use("/base", baseController.get);
-router.use("/*", (req: Request, res: Response) => {
+router.use("/{*splat}", (req: Request, res: Response) => {
   res.sendStatus(404);
 });
 
