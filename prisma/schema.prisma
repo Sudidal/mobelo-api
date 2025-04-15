@@ -11,11 +11,9 @@ generator client {
 model Mobile {
   id Int @id @default(autoincrement())
 
-  name            String
-  mainSpecsId     Int      @unique
-  detailedSpecsId Int      @unique
-  companyId       Int
-  launchDate      DateTime
+  name       String
+  companyId  Int
+  launchDate DateTime
 
   mainSpecs     MobileMainSpecs?
   detailedSpecs MobileDetailedSpecs?
@@ -26,7 +24,7 @@ model MobileMainSpecs {
   id       Int @id @default(autoincrement())
   mobileId Int @unique
 
-  rom              Int
+  romVersions      Int[]
   ram              Int
   batterySize      Int
   mainCamMP        Int
@@ -48,7 +46,7 @@ model MobileDetailedSpecs {
   bodyWidth        Decimal
   weight           Decimal
   fiveG            Boolean
-  stereoSpeacker   Boolean
+  stereoSpeaker    Boolean
   threeFiveMMJack  Boolean
   gpu              String
   os               String
@@ -57,7 +55,6 @@ model MobileDetailedSpecs {
   rearCams         String[]
   charge           String[]
   sensors          String[]
-  versions         String[]
   colors           String[]
 
   mobile Mobile @relation(fields: [mobileId], references: [id])
