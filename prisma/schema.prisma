@@ -4,21 +4,22 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["strictUndefinedChecks"]
 }
 
 model Mobile {
   id Int @id @default(autoincrement())
 
-  name              String
-  mobileMainSpecsId Int      @unique
-  detailedSpecsId   Int      @unique
-  companyId         Int
-  launchDate        DateTime
+  name            String
+  mainSpecsId     Int      @unique
+  detailedSpecsId Int      @unique
+  companyId       Int
+  launchDate      DateTime
 
-  mainSpecs           MobileMainSpecs?
-  MobileDetailedSpecs MobileDetailedSpecs?
-  company             Company              @relation(fields: [companyId], references: [id])
+  mainSpecs     MobileMainSpecs?
+  detailedSpecs MobileDetailedSpecs?
+  company       Company              @relation(fields: [companyId], references: [id])
 }
 
 model MobileMainSpecs {
