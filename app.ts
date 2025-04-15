@@ -1,18 +1,22 @@
 import { styleText } from "node:util";
 
 import "./envCheck.ts";
+
 import express from "express";
 import helmet from "helmet";
+import cors from "cors";
+
 import errorHandler from "./middleware/errorHandler.js";
-import { baseRouter } from "./routers/baseRouter.js";
+import { indexRouter } from "./routers/index.js";
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3000);
 const HOST = process.env.HOST ?? "localhost";
 
-app.use(helmet())
+app.use(cors({ origin: true }));
+app.use(helmet());
 
-app.use("/", baseRouter);
+app.use("/", indexRouter);
 app.use(errorHandler);
 
 app.listen(PORT, HOST, () => {
