@@ -6,6 +6,7 @@ import MobilesController from "../controllers/mobiles";
 
 const router = express.Router();
 
-router.get("/get", MobilesController.get);
+router.get("/", MobilesController.get);
+router.get("/:id", MobilesController.getSingle);
 
 export { router as mobilesRouter };
