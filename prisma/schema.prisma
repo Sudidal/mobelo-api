@@ -17,7 +17,7 @@ model Mobile {
 
   mainSpecs     MobileMainSpecs?
   detailedSpecs MobileDetailedSpecs?
-  company       Company              @relation(fields: [companyId], references: [id])
+  company       Company              @relation(fields: [companyId], references: [id], onDelete: Cascade)
 }
 
 model MobileMainSpecs {
@@ -34,7 +34,7 @@ model MobileMainSpecs {
   displayType      String
   cpu              String
 
-  mobile Mobile @relation(fields: [mobileId], references: [id])
+  mobile Mobile @relation(fields: [mobileId], references: [id], onDelete: Cascade)
 }
 
 model MobileDetailedSpecs {
@@ -57,7 +57,7 @@ model MobileDetailedSpecs {
   sensors          String[]
   colors           String[]
 
-  mobile Mobile @relation(fields: [mobileId], references: [id])
+  mobile Mobile @relation(fields: [mobileId], references: [id], onDelete: Cascade)
 }
 
 model Company {
