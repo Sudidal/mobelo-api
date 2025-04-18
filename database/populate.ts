@@ -2,12 +2,12 @@ import { faker } from "@faker-js/faker";
 import prisma from "../prisma/client";
 import { Prisma } from "@prisma/client";
 
-populate(10);
+async function populateDB(times: number) {
+  const result = [];
 
-async function populate(times: number) {
   const companyName = faker.vehicle.manufacturer();
   for (let i = 0; i < times; i++) {
-    await prisma.mobile.create({
+    const created = await prisma.mobile.create({
       data: {
         name: faker.company.buzzVerb() + " " + faker.number.int(20),
         launchDate: faker.date.anytime(),
@@ -104,5 +104,10 @@ async function populate(times: number) {
         },
       },
     });
+    result.push(created);
   }
+  return result;
 }
+
+
+export default populateDB
